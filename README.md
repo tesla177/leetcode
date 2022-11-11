@@ -1,3 +1,2 @@
-# my_first_demo
-
+# leetcode
 Solve some simple algorithm problems
