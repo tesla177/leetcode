@@ -1,0 +1,35 @@
+package suanfa;
+
+public class code775M {
+    public static void main(String[] args) {
+        //正常思路为暴力破解，时间复杂度为O(n*n)
+        //因为一个局部倒置一定是一个全局倒置，所以只要nums[i]大于i+1之后的值即为false，也就是
+        //nums[i] 大于 i+1后的最小值即可，为降低复杂度，设置一个最小变量，每次判断后更新
+        int[] nums = {1,2,0};
+        int n = nums.length,min = nums[n-1];
+        for (int i = n-3; i >= 0; i--) {
+            if(nums[i] > min){
+                System.out.println(false);
+                break;
+            }
+            min = Math.min(min,nums[i+1]);
+        }
+        System.out.println(true);
+
+        //对于最小的0来说，它的下标不能够大于2，若nums[0]=0,那么问题转化为[1,n-1]区间的一个子问题
+        //若nums[1] =0,那么nums[0]只能为1，那么问题转换为了[2,n-1]区间的一个子问题
+        //综上，得出结论，|nums[i]-i| <= 1
+        for(int i =0;i<nums.length;i++){
+            if(Math.abs(nums[i]-i)>1){
+                System.out.println(false);
+                break;
+            }
+        }
+        System.out.println(true);
+
+
+
+
+
+    }
+}
