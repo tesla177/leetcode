@@ -1,0 +1,32 @@
+package suanfa;
+
+public class code792M {
+    public static void main(String[] args) {
+        String s = "dsahjpjauf";
+        String[] words = {"ahjpjau","ja","ahbwzgqnuk","tnmlanowax"};
+        int res = 0;
+        for (String word : words) {
+            //遍历每一个字符
+            int l = word.length();
+            //c为开始遍历的索引值，i为遍历过的字符个数，
+            int c = 0,i = 0;
+            while(true){
+                c = s.indexOf(word.charAt(i),c);
+                //c为-1表示不存在，即退出while
+                if(c==-1) break;
+                //从c的后一位开始继续遍历
+                c++;
+                i++;
+                //i等于word字符长度，即遍历完，同时res+1
+                if(i == word.length()){
+                    res++;
+                    break;
+                }
+            }
+        }
+        System.out.println(res);
+
+
+
+    }
+}
