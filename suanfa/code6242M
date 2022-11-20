@@ -1,0 +1,42 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+	TreeSet<Integer> set;
+
+	public List<List<Integer>> closestNodes(TreeNode root, List<Integer> queries) {
+		set = new TreeSet<>();
+		f(root);
+		List<List<Integer>> ans = new ArrayList<>();
+		for (int i = 0; i < queries.size(); i++) {
+			int query = queries.get(i);
+			Integer min = set.floor(query);
+			Integer max = set.ceiling(query);
+			ans.add(Arrays.asList(new Integer[] { min == null ? -1 : min, max == null ? -1 : max }));
+		}
+		return ans;
+	}
+
+	private void f(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+		set.add(root.val);
+		this.f(root.left);
+		this.f(root.right);
+	}
+
+}
