@@ -1,0 +1,19 @@
+class Solution {
+    public int numSubarrayBoundedMax(int[] nums, int left, int right) {
+        return liu(nums,right) - liu(nums,left-1);
+
+    }
+    public static int liu(int[] nums,int f){
+        int ans = 0;
+        int t = 0;
+        for(int i = 0;i < nums.length;i++){
+            if(nums[i]>f){
+                t = 0;
+            }else{
+                t++;
+            }
+            ans+=t;
+        }
+        return ans;
+    }
+}
